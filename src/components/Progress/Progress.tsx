@@ -16,8 +16,10 @@ export enum ProgressStatus {
   ScheduledLabTest = 'scheduled-lab-test'
 }
 
+type StepState = 'pending' | 'in-progress' | 'completed';
+
 interface ProgressProps {
-  status: ProgressStatus
+  status: ProgressStatus;
 }
 
 const ListWrap = styled.div`
