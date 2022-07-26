@@ -9,6 +9,8 @@ import React, { FC } from 'react'
   - Medical review of results
  */
 
+const green = '#00790C';
+
 export enum ProgressStatus {
   Initial = 'initial',
   Ordered = 'ordered',
