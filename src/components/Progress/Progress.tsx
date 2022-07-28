@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import React, { FC } from 'react'
 import ProgressItem, { StepStatus } from './ProgressItem';
 
+// Steps
 const steps = [
   'Successfully ordered',
   'Fill out Medical Assessment',
@@ -11,15 +12,12 @@ const steps = [
 
 // const green = '#00790C';
 
+// Step Status -- to decide which steps are completed, in-progress, or pending
 export enum ProgressStatus {
   Ordered = 'ordered', // show "successfully ordered" as completed, and the next step as "in-progress"
   CompletedMedicalAssessment = 'completed-medical-assessment', // show "fill out medical assessment" and all previous steps as completed, and the next step as "in-progress"
   ScheduledLabTest = 'scheduled-lab-test' // show "schedule your at-home lab test" and all previous steps as completed, and the next step as "in-progress"
   // the last step "medical review of results" is never shown as completed, and is shown as "in-progress"
-}
-
-interface ProgressProps {
-  status: ProgressStatus;
 }
 
 const ListWrap = styled.div`
@@ -35,10 +33,15 @@ const ListWrap = styled.div`
   margin: 0 auto;
 `
 
+interface ProgressProps {
+  status: ProgressStatus;
+}
+
 const Progress: FC<ProgressProps> = () => {
   return (
     <ListWrap>
       {steps.map((step, index) => {
+        // this simulates the "Ordered" status
         const stepStatus: StepStatus = index === 0 ? 'completed' : index === 1 ? 'in-progress' : 'pending';
         return <ProgressItem key={index} label={step} status={stepStatus} />
       })}
