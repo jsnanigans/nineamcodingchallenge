@@ -1,7 +1,11 @@
 import styled from '@emotion/styled';
 import React, { FC } from 'react'
 
-export type StepStatus = 'pending' | 'in-progress' | 'completed';
+export enum StepStatus {
+  Pending = 'pending', // gray outline - not done yet
+  InProgress = 'in-progress', // green outline - current "todo" for user
+  Completed = 'completed' // green outline and background, checkmark is visible - step is completed
+}
 
 const ItemRow = styled.div`
   display: flex;

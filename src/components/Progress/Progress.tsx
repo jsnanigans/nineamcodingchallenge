@@ -16,7 +16,7 @@ const steps = [
 export enum ProgressStatus {
   Ordered = 'ordered', // show "successfully ordered" as completed, and the next step as "in-progress"
   CompletedMedicalAssessment = 'completed-medical-assessment', // show "fill out medical assessment" and all previous steps as completed, and the next step as "in-progress"
-  ScheduledLabTest = 'scheduled-lab-test' // show "schedule your at-home lab test" and all previous steps as completed, and the next step as "in-progress"
+  ScheduledLabTest = 'scheduled-lab-test', // show "schedule your at-home lab test" and all previous steps as completed, and the next step as "in-progress"
   Finished = 'finished' // show all as completed
   // the last step "medical review of results" is never shown as completed, and is shown as "in-progress"
 }
@@ -43,7 +43,7 @@ const Progress: FC<ProgressProps> = () => {
     <ListWrap>
       {steps.map((step, index) => {
         // this simulates the "Ordered" status
-        const stepStatus: StepStatus = index === 0 ? 'completed' : index === 1 ? 'in-progress' : 'pending';
+        const stepStatus: StepStatus = index === 0 ? StepStatus.Completed : index === 1 ? StepStatus.InProgress : StepStatus.Pending;
         return <ProgressItem key={index} label={step} status={stepStatus} />
       })}
     </ListWrap>
