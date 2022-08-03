@@ -17,6 +17,7 @@ export enum ProgressStatus {
   Ordered = 'ordered', // show "successfully ordered" as completed, and the next step as "in-progress"
   CompletedMedicalAssessment = 'completed-medical-assessment', // show "fill out medical assessment" and all previous steps as completed, and the next step as "in-progress"
   ScheduledLabTest = 'scheduled-lab-test' // show "schedule your at-home lab test" and all previous steps as completed, and the next step as "in-progress"
+  Finished = 'finished' // show all as completed
   // the last step "medical review of results" is never shown as completed, and is shown as "in-progress"
 }
 

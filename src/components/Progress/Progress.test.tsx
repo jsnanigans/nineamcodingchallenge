@@ -8,7 +8,7 @@ import Progress, { ProgressStatus } from './Progress'
 
 describe('Progress Comoponent', () => {
   it('should have first element in "in-progress", the rest in "pending" state', () => {
-    render(<Progress status={ProgressStatus.Initial} />)
+    render(<Progress status={ProgressStatus.Ordered} />)
     expect(1).toBe(1)
   })
 
