@@ -55,8 +55,6 @@ const Progress: FC<ProgressProps> = (props) => {
   return (
     <ListWrap>
       {computedSteps.map(({label, status}, index) => {
-        // this simulates the "Ordered" status
-        // const stepStatus: StepStatus = index === 0 ? StepStatus.Completed : index === 1 ? StepStatus.InProgress : StepStatus.Pending;
         return <ProgressItem key={index} label={label} status={status} />
       })}
     </ListWrap>
