@@ -4,7 +4,7 @@ Preview https://www.figma.com/file/VOktP1HZfkUGfyPDXWIqbh/9amcodingchallenge-roo
 
 Todo:
 - [ ] Style the `ProgressItem` Icon to look like the design based on the `status` property
-- [ ] Add Logic to determine if the item is complete or not based on the `status` property of the `Progress` component
+- [ ] Update `computedSteps` to mark all steps before the current one as completed, the current one as completed, the next one as in-progress and all other as pending
 - [ ] Add the line connecting the the `ProgressItems`
 - [ ] Add unit tests
 

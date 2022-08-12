@@ -1,14 +1,6 @@
 import styled from '@emotion/styled'
-import React, { FC } from 'react'
+import React, { FC, useCallback, useMemo } from 'react'
 import ProgressItem, { StepStatus } from './ProgressItem';
-
-// Steps
-const steps = [
-  'Successfully ordered',
-  'Fill out Medical Assessment',
-  'Schedule your at-home lab test',
-  'Medical review of results'
-]
 
 // const green = '#00790C';
 
@@ -20,6 +12,14 @@ export enum ProgressStatus {
   Finished = 'finished' // show all as completed
   // the last step "medical review of results" is never shown as completed, and is shown as "in-progress"
 }
+
+// Steps
+const steps = [
+  {label: 'Successfully ordered', doneStatusItem: ProgressStatus.Ordered},
+  {label: 'Fill out medical assessment', doneStatusItem: ProgressStatus.CompletedMedicalAssessment},
+  {label: 'Schedule your at-home lab test', doneStatusItem: ProgressStatus.ScheduledLabTest},
+  {label: 'Medical review of results', doneStatusItem: ProgressStatus.Finished}
+]
 
 const ListWrap = styled.div`
   padding: 1em;
@@ -38,13 +38,26 @@ interface ProgressProps {
   status: ProgressStatus;
 }
 
-const Progress: FC<ProgressProps> = () => {
+const Progress: FC<ProgressProps> = (props) => {
+  const computedSteps = useMemo<{
+    label: string;
+    doneStatusItem: ProgressStatus;
+    status: StepStatus;
+  }[]>(() => {
+    return steps.map(step => {
+      return {
+        ...step,
+        status: step.doneStatusItem === props.status ? StepStatus.Completed : StepStatus.InProgress
+      }
+    });
+  }, [props.status])
+
   return (
     <ListWrap>
-      {steps.map((step, index) => {
+      {computedSteps.map(({label, status}, index) => {
         // this simulates the "Ordered" status
-        const stepStatus: StepStatus = index === 0 ? StepStatus.Completed : index === 1 ? StepStatus.InProgress : StepStatus.Pending;
-        return <ProgressItem key={index} label={step} status={stepStatus} />
+        // const stepStatus: StepStatus = index === 0 ? StepStatus.Completed : index === 1 ? StepStatus.InProgress : StepStatus.Pending;
+        return <ProgressItem key={index} label={label} status={status} />
       })}
     </ListWrap>
   )
